@@ -6,11 +6,10 @@ export function App() {
 
   return (
     <>
-      <Button color='primary'/>
-      <Button color='secondary' />
-      <Button color='danger' />
-      <Button color='success' />
-      <Button />
+      <Button variant='primary'/>
+      <Button variant='secondary' />
+      <Button variant='danger' />
+      <Button variant='success' />
     </>
   )
 }
