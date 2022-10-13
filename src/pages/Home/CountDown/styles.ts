@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const CountDownContainer = styled.div`
   font-family: 'Roboto Mono', monospace;
