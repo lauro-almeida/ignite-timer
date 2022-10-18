@@ -8,8 +8,6 @@
 
 Projeto desenvolvido durante o módulo 2 do curso.
 
-[🔗 Clique aqui para acessar]()
-
 
 ## 🔧 Tecnologias
 - ReactJS
