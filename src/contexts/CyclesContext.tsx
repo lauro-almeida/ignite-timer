@@ -1,6 +1,16 @@
 import { differenceInSeconds } from 'date-fns'
-import { createContext, ReactNode, useEffect, useReducer, useState } from 'react'
-import { addNewCycleAction, interruptCurrentCycleAction, markCurrentCycleAsFinishedAction } from '../reducers/cycles/actions'
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
+import {
+  addNewCycleAction,
+  interruptCurrentCycleAction,
+  markCurrentCycleAsFinishedAction,
+} from '../reducers/cycles/actions'
 import { Cycle, cyclesReducer } from '../reducers/cycles/reducer'
 
 interface CreateCycleData {
@@ -28,21 +38,35 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(cyclesReducer, {
-    cycles: [],
-    activeCycle: null,
-  }, () => {
-    const storedStateAsJSON = localStorage.getItem('@ignite-timer:cycles-state-1.0.0')
-    
-    if (storedStateAsJSON) {
-      return JSON.parse(storedStateAsJSON)
-    }
-
-    return {
-      cycles: [{id: 1, task: "Criar post para o Linkedin sobre o projeto Ignite Timer", minutesAmount: 15, startDate: new Date(2022, 9, 18), finishedDate: new Date(2022, 9, 18)}],
+  const [cyclesState, dispatch] = useReducer(
+    cyclesReducer,
+    {
+      cycles: [],
       activeCycle: null,
-    }
-  })
+    },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@ignite-timer:cycles-state-1.0.0',
+      )
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return {
+        cycles: [
+          {
+            id: 1,
+            task: 'Criar post para o Linkedin sobre o projeto Ignite Timer',
+            minutesAmount: 15,
+            startDate: new Date(2022, 9, 18),
+            finishedDate: new Date(2022, 9, 18),
+          },
+        ],
+        activeCycle: null,
+      }
+    },
+  )
 
   const { cycles, activeCycleId } = cyclesState
 
@@ -60,7 +84,6 @@ export function CyclesContextProvider({
 
     localStorage.setItem('@ignite-timer:cycles-state-1.0.0', stateJSON)
   }, [cyclesState])
-
 
   function markCurrentCycleAsFinished() {
     dispatch(markCurrentCycleAsFinishedAction())
